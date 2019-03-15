@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+
+    <title>Pi Day</title>
+    
+</head>
+<body>
+    <p>Throws: <span id='data'></span></p>
+    <p>Hits: <span id='hits'></span></p>
+    <p>Proximity to Pi: <span id='pi'></span></p>
+    <p id="data"></p>
+    <p id="hits"></p>
+    <p id="pi"></p>
+<script>
+
+function setup() {
+    // the initial setup
+    createCanvas(400,400)
+    square(0,0,200)
+    circle(100, 100, 100)
+    frameRate(500)
+}
+
+
+let counter = 0;
+let hitCenter = 0;
+
+
+function draw() {
+    counter++; //tracking the trends
+    document.getElementById('data').innerText = counter;
+    document.getElementById('hits').innerText = hitCenter;
+    document.getElementById('pi').innerText = (hitCenter / counter) *4;
+  // a loop that keeps running
+  // (x,y) where the dart lands would be 0 - 200
+  let x = random(0, 200);
+  let y = random(0, 200);
+  let distFromCenter = dist(x, y, 100, 100)
+  if (distFromCenter <= 100) {
+      hitCenter++;
+      fill(255, 0, 0)
+      circle(x,y,5)
+      //counter divided by inside
+  } else {
+    fill(0, 255, 0)
+    circle(x,y,5) 
+    //counter devided by outside     
+  }
+  // how do we know if a throw is in the circle?
+}
+
+</script>    
+
+
+    
+</body>
+</html>
